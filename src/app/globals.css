@@ -2594,6 +2594,12 @@
 
 
 /* -----------------------------------------------------responsive on header-div */
+
+@media (min-width: 640px) and (max-width: 768px) {
+    .insight-loop{
+       margin-left: 20px;
+    }
+}
 @media (min-width: 768px) and (max-width: 1024px) {
     
 
@@ -2604,6 +2610,11 @@
     
     
 
+    .service-inner-main-div{
+        margin-top: -150px;
+    }
+
+    
    
 
     /* .service-main-div {

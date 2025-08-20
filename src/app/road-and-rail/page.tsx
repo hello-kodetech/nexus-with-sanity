@@ -69,7 +69,7 @@ const roadAndRail = async () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-0 lg:px-8 lg:-mt-28 md:-mt-28 service-inner-main-div">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-0 lg:px-8 lg:-mt-28 md:-mt-28 service-inner-main-div relative">
         <AnimatedSection direction="up" delay={0.2}>
           <HeroTitleAndParagraph
             title={pageData?.heading_title || "Road & Rail Transport"}

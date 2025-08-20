@@ -291,7 +291,7 @@ const InsightsPage = async () => {
                                 {pageData?.latest_insights_title?.map((insight : Insight, index: number) => (
                                     <div
                                         key={index}
-                                        className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-86 sm:max-w-none mx-auto sm:mx-0 lg:gap-8"
+                                        className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-86 sm:max-w-none mx-auto sm:mx-0 lg:gap-8 insight-loop"
                                     >
                                         <div className="md:col-span-1">
                                             <Image
@@ -302,7 +302,7 @@ const InsightsPage = async () => {
                                                 className="w-full h-48 md:h-56 object-cover rounded-lg"
                                             />
                                         </div>
-                                        <div className="md:col-span-2 flex flex-col justify-between">
+                                        <div className="md:col-span-2 flex flex-col justify-between ">
                                             <div>
                                                 <h3 className="text-[#162F65] text-base md:text-lg lg:text-2xl font-semibold mb-2 lg:mb-4 tracking-wide">
                                                     {insight.preview_title}
