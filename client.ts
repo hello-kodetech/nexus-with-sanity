@@ -8,7 +8,7 @@ const client = createClient({
   useCdn: true,
   token: process.env.NEXT_PUBLIC_SANITY_API_TOKEN,
 });
-
+ 
 export default client;
 
 const builder = imageUrlBuilder(client);
