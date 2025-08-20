@@ -141,6 +141,7 @@ const ComprehensiveSolutions = ({
                                     </div>
                                 </div>
 
+
                                 <div className="w-full lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
                                     {services.map((item, index) => (
                                         <Link key={index} href={item.link}>
