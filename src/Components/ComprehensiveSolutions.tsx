@@ -176,6 +176,8 @@ const ComprehensiveSolutions = ({
                         </AnimatedSection>
                     </div>
 
+
+                        {/* mobile */}
                     <div className="lg:hidden w-full">
                         <AnimatedSection direction="up" delay={0.2}>
                             <Slider {...settings}>
@@ -222,10 +224,10 @@ const ComprehensiveSolutions = ({
                                                     <>
                                                         <div className="absolute bg-[url('/x.png')] opacity-5 bg-no-repeat bg-contain inset-0 items-center -top-20 w-[400px] h-[800px]" />
                                                         <div className="relative p-2 sm:p-4 flex flex-col items-center justify-between h-full">
-                                                            <p className="text-left font-medium pt-2 px-6 text-xs text-[#FFFFFF] leading-[20px] whitespace-pre-line">
+                                                            <p className="text-left font-medium pt-2 px-2 text-xs text-[#FFFFFF]  whitespace-pre-line">
                                                                 {item.description}
                                                             </p>
-                                                            <div className="flex flex-row gap-2 group justify-start items-center pt-4 sm:pt-6 w-full px-6">
+                                                            <div className="flex flex-row gap-2 group justify-start items-center pt-4 sm:pt-6 w-full px-2">
                                                                 <svg
                                                                     className="w-8 h-8 text-left flex-shrink-0"
                                                                     width="81"
@@ -258,7 +260,7 @@ const ComprehensiveSolutions = ({
                                                     </p>
                                                 )}
                                             </div>
-                                            <p className="mt-4 text-center font-medium text-base text-[#002453] whitespace-nowrap">
+                                            <p className="mt-4 text-center font-medium text-base text-[#002453]">
                                                 {item.label}
                                             </p>
                                         </div>

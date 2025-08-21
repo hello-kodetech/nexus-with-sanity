@@ -144,7 +144,7 @@ const InsightsPage = async () => {
                 >
                 <AnimatedSection direction="up" delay={0.2}>
                     <h1 className="text-[#162F65] text-3xl md:text-4xl lg:text-[50px] py-4 font-bold">
-                        Insights
+                       { pageData?.hero_section?.heroTitle || " Insights"}
                     </h1>
                     {/* Subtitle */}
                     <div className="mb-8 lg:mb-16">
@@ -157,9 +157,8 @@ const InsightsPage = async () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16 lg:mb-24">
                     {/* Main Featured Card */}
                     <div
-                        className="lg:col-span-2 relative rounded-xl overflow-hidden"
-                        style={{paddingTop: "56.25%" /* 16:9 Aspect Ratio */}}
-                    >
+                        className="lg:col-span-2 relative rounded-xl overflow-hidden main-post"
+                        >
                         <Image
                             fill
                             src={pageData?.main_post?.feature_image?.asset?.url ? urlFor(pageData.main_post.feature_image).url() : "/insights/train.png"}

@@ -162,24 +162,10 @@ export const insights = `
 *[_type == "Insights"][0]{
   _id,
   _type,
-  hero_section{
-    title,
-    desktopImage{
-      _type,
-      asset->{
-        _id,
-        url
-      }
+   hero_section{
+    heroTitle,
+    "heroImage": heroImage.asset->url,
     },
-    mobileImage{
-      _type,
-      asset->{
-        _id,
-        url
-      }
-    },
-    altText
-  },
   Page_subtitle,
   main_post->{
     _id,

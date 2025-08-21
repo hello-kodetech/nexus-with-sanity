@@ -2585,10 +2585,21 @@
 
 
 
+.main-post{
+    padding-top: 56.25%;
+}
+@media (min-width: 280px) and (max-width: 639px) {
+    .quote-title-part{
+        margin-bottom: 0 !important;
+        line-height: normal;
+    }
+}
 
-
-
-
+@media (min-width: 280px) and (max-width: 600px) {
+.main-post{
+    padding-top: 68.25%;
+}
+}
 
 
 
