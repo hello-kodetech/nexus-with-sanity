@@ -1236,95 +1236,16 @@ export const integratedLogistics = `
   
 `
 
+
+
 export const leadership = `
  *[_type == "leadership"]{
   hero_section{
     heroTitle,
     "heroImage": heroImage.asset->url,
     },
-  Page_subtitle,
-  terms_member_1{
-    
-    person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_2{
-   person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_3{
-   person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_4{
-    person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_5{
-    person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_6{
-   person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_7{
-    person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_8{
-   person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_9{
+  Page_subtitle,  
+  team_members[]{
     person_name,
     person_designation,
     "person_photo": person_photo.asset->url,
@@ -1353,6 +1274,9 @@ seo {
 }
   
 `
+
+
+
 
 
 export const linkedInSection = `
