@@ -191,7 +191,7 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                     alt={postData.postTitle || "Post image"}
                                     {/* width={600}
                                     height={400} */}
-                                    className="w-full h-auto rounded-[10px] object-cover"
+                                    className="w-[600px] h-auto rounded-[10px] object-cover"
                                     fill
                                 />
                             )}
