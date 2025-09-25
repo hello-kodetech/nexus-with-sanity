@@ -222,8 +222,8 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                 <Image
                                     src={urlFor(postData.postImage_2).url()}
                                     alt={postData.postTitle || "Post image"}
-                                    width={600}
-                                    height={400}
+                                    width={1200}
+                                    height={800}
                                     className="w-full h-auto rounded-[10px] object-cover"
                                 />
                             )}
@@ -240,8 +240,8 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                 <Image
                                     src={urlFor(postData.postImage_3).url()}
                                     alt={postData.postTitle || "Post image"}
-                                    width={600}
-                                    height={400}
+                                    width={1200}
+                                    height={800}
                                     className="w-full h-auto rounded-[10px] object-cover"
                                 />
                             )}
