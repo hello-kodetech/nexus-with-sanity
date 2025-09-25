@@ -189,10 +189,9 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                 <Image
                                     src={urlFor(postData.feature_image).url()}
                                     alt={postData.postTitle || "Post image"}
-                                    {/* width={600}
-                                    height={400} */}
-                                    className="w-[600px] h-auto rounded-[10px] object-cover"
-                                    fill
+                                    width={600}
+                                    height={400} 
+                                    className="w-auto h-auto rounded-[10px] object-cover"
                                 />
                             )}
                         </div>
