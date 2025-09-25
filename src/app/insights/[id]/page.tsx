@@ -192,6 +192,7 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                     width={600}
                                     height={400}
                                     className="w-full h-auto rounded-[10px] object-cover"
+                                    fill
                                 />
                             )}
                         </div>
