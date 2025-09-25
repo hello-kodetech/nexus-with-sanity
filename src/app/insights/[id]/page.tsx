@@ -191,7 +191,7 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                     alt={postData.postTitle || "Post image"}
                                     width={600}
                                     height={400}
-                                    className="w-full h-auto rounded-[10px] object-cover aspect-[2/1]"
+                                    className="w-full h-auto rounded-[10px] object-cover"
                                 />
                             )}
                         </div>
@@ -207,7 +207,7 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                     alt={postData.postTitle || "Post image"}
                                     width={600}
                                     height={400}
-                                    className="w-full h-auto rounded-[10px] object-cover aspect-[2/1]"
+                                    className="w-full h-auto rounded-[10px] object-cover"
                                 />
                             )}
                         </div>
@@ -224,7 +224,7 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                     alt={postData.postTitle || "Post image"}
                                     width={600}
                                     height={400}
-                                    className="w-full h-auto rounded-[10px] object-cover aspect-[2/1]"
+                                    className="w-full h-auto rounded-[10px] object-cover"
                                 />
                             )}
                         </div>
@@ -242,7 +242,7 @@ const InsightInner = async ({params}: InsightInnerProps) => {
                                     alt={postData.postTitle || "Post image"}
                                     width={600}
                                     height={400}
-                                    className="w-full h-auto rounded-[10px] object-cover aspect-[2/1]"
+                                    className="w-full h-auto rounded-[10px] object-cover"
                                 />
                             )}
                         </div>
