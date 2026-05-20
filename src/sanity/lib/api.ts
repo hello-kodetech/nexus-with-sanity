@@ -63,17 +63,29 @@ import {
     footerData,
     siteSettings,
     FreightQuoteWidgetData,
-    header,
+    // header,
+    NavbarData,
 
 } from '@/sanity/types';
 
 
 
-export async function getHeaderData(): Promise<header | null> {
+// export async function getHeaderData(): Promise<header | null> {
+//     try {
+//         const data = await sanityClient.fetch(headerQuery);
+//         console.log("Fetched header data:", data);
+//         return data && data.length > 0 ? data[0] : null;
+//     } catch (error) {
+//         console.error("Error fetching header data:", error);
+//         return null;
+//     }
+// }
+
+export async function getHeaderData(): Promise<NavbarData | null> {
     try {
         const data = await sanityClient.fetch(headerQuery);
         console.log("Fetched header data:", data);
-        return data && data.length > 0 ? data[0] : null;
+        return data || null;
     } catch (error) {
         console.error("Error fetching header data:", error);
         return null;

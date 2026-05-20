@@ -732,3 +732,23 @@ export interface LinkedinSectionData {
     section_description?: string;
     button_link?: string;
 }
+
+
+export interface SubNavItem {
+    name: string;
+    link: string;
+}
+
+export interface NavItemType {
+    nav_item_name: string;
+    nav_item_link: string;
+    sub_items?: SubNavItem[];
+}
+
+export interface NavbarData {
+    logoUrl?: string;
+    navbar_logo_alt?: string;
+    navbar_logo_link?: string;
+    nav_items?: NavItemType[];
+    headerScripts?: string;
+}

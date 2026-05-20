@@ -309,35 +309,79 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { NavbarData, NavItemType } from "@/sanity/types";
+import { getHeaderData } from "@/sanity/lib/api";
+
+const FALLBACK_LOGO = "/Logo-Nexus.png";
+const FALLBACK_LOGO_ALT = "Nexus Logo";
+const FALLBACK_LOGO_LINK = "/";
+
+const FALLBACK_NAV_ITEMS: NavItemType[] = [
+  {
+    nav_item_name: "Why Nexus",
+    nav_item_link: "/whyNexus",
+  },
+  {
+    nav_item_name: "Leadership Team",
+    nav_item_link: "/leadership",
+  },
+  {
+    nav_item_name: "Services",
+    nav_item_link: "/services",
+    sub_items: [
+      { name: "Air & Sea Freight", link: "/air-and-sea-freight" },
+      {
+        name: "Customs Clearance & Compliance",
+        link: "/customs",
+      },
+      {
+        name: "3PL, Warehousing & Special Projects",
+        link: "/Integrated-logistics",
+      },
+      { name: "Road & Rail Transport", link: "/road-and-rail" },
+    ],
+  },
+  {
+    nav_item_name: "Insights",
+    nav_item_link: "/insights",
+  },
+];
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const pathname = usePathname();
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
+  const [openMobileDropdownIndex, setOpenMobileDropdownIndex] = useState<number | null>(null);
+  const [headerData, setHeaderData] = useState<NavbarData | null>(null);
 
-  const services = [
-    { href: "/air-and-sea-freight", label: "Air & Sea Freight" },
-    {
-      href: "/customs",
-      label: "Customs Clearance & Compliance",
-    },
-    {
-      href: "/Integrated-logistics",
-      label: "3PL, Warehousing & Special Projects",
-    },
-    { href: "/road-and-rail", label: "Road & Rail Transport" },
-  ];
+  const pathname = usePathname();
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchHeaderData = async () => {
+      try {
+        const res = await getHeaderData();
+        if (isMounted) {
+          setHeaderData(res);
+        }
+      } catch (err) {
+        console.error("Error fetching header data from Sanity:", err);
+      }
+    };
+    fetchHeaderData();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Close desktop dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
       ) {
-        setIsServicesOpen(false);
+        setOpenDropdownIndex(null);
       }
     };
 
@@ -347,12 +391,12 @@ const Nav = () => {
     };
   }, []);
 
-  // const navLinks = [
-  //   { href: "/whyNexus", label: "Why Nexus" },
-  //   { href: "/leadership", label: "Leadership Team" },
-  //   { href: "/services", label: "Services" },
-  //   { href: "/insights", label: "Insights" },
-  // ];
+  const logoUrl = headerData?.logoUrl || FALLBACK_LOGO;
+  const logoAlt = headerData?.navbar_logo_alt || FALLBACK_LOGO_ALT;
+  const logoLink = headerData?.navbar_logo_link || FALLBACK_LOGO_LINK;
+  const navItems = headerData?.nav_items && headerData.nav_items.length > 0
+    ? headerData.nav_items
+    : FALLBACK_NAV_ITEMS;
 
   return (
     <header className="relative z-50 poppins">
@@ -404,53 +448,11 @@ const Nav = () => {
           </div>
 
           {/* Logo */}
-          {/*<div*/}
-          {/*    className="flex-shrink-0 order-2 lg:order-none absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:transform-none">*/}
-          {/*    <Link href="/">*/}
-          {/*        <Image*/}
-          {/*            src="/Logo-Nexus.png"*/}
-          {/*            alt="Nexus Logo"*/}
-          {/*            width={120}*/}
-          {/*            height={120}*/}
-          {/*            className="h-12 sm:h-16 lg:h-20 w-auto"*/}
-          {/*            priority*/}
-          {/*        />*/}
-          {/*    </Link>*/}
-          {/*</div>*/}
-
-          {/*<div*/}
-          {/*    className="flex-shrink-0 order-2 lg:order-none lg:relative lg:left-0 lg:transform-none md:flex md:justify-center"*/}
-          {/*>*/}
-          {/*    <Link href="/">*/}
-          {/*        <Image*/}
-          {/*            src="/Logo-Nexus.png"*/}
-          {/*            alt="Nexus Logo"*/}
-          {/*            width={120}*/}
-          {/*            height={120}*/}
-          {/*            className="h-12 sm:h-16 lg:h-20 w-auto"*/}
-          {/*            priority*/}
-          {/*        />*/}
-          {/*    </Link>*/}
-          {/*</div>*/}
-
-          {/*<div className="flex-shrink-0 order-2 flex justify-center absolute left-1/2 -translate-x-1/2 lg:order-none lg:relative lg:left-0 lg:transform-none md:flex md:justify-center">*/}
-          {/*    <Link href="/">*/}
-          {/*        <Image*/}
-          {/*            src="/Logo-Nexus.png"*/}
-          {/*            alt="Nexus Logo"*/}
-          {/*            width={120}*/}
-          {/*            height={120}*/}
-          {/*            className="h-12 sm:h-16 lg:h-20 w-auto"*/}
-          {/*            priority*/}
-          {/*        />*/}
-          {/*    </Link>*/}
-          {/*</div>*/}
-
           <div className="flex-shrink-0 order-2 flex justify-center lg:order-none lg:flex lg:justify-center">
-            <Link href="/">
+            <Link href={logoLink}>
               <Image
-                src="/Logo-Nexus.png"
-                alt="Nexus Logo"
+                src={logoUrl}
+                alt={logoAlt}
                 width={180}
                 height={180}
                 className="h-20 sm:h-24 lg:h-28 w-auto"
@@ -469,130 +471,91 @@ const Nav = () => {
           </div>
 
           {/* Desktop Navigation - Hidden on small screens */}
-          {/*<nav className="hidden lg:flex items-center space-x-6 lg:space-x-8 xl:space-x-12 order-2 text-sm md:text-base xl:text-lg">*/}
-          {/*  <Link*/}
-          {/*    href="/whyNexus"*/}
-          {/*    className="font-semibold text-[#282828] hover:text-[#082049] transition-colors duration-200"*/}
-          {/*  >*/}
-          {/*    Why Nexus*/}
-          {/*  </Link>*/}
-          {/*  <Link*/}
-          {/*    href="/leadership"*/}
-          {/*    className="font-semibold text-[#282828] hover:text-[#082049] transition-colors duration-200"*/}
-          {/*  >*/}
-          {/*    Leadership Team*/}
-          {/*  </Link>*/}
-          {/*  <Link*/}
-          {/*    href="/services"*/}
-          {/*    className="font-semibold text-[#282828] hover:text-[#082049] transition-colors duration-200"*/}
-          {/*  >*/}
-          {/*    Services*/}
-          {/*  </Link>*/}
-          {/*  <Link*/}
-          {/*    href="/insights"*/}
-          {/*    className="font-semibold text-[#282828] hover:text-[#082049] transition-colors duration-200"*/}
-          {/*  >*/}
-          {/*    Insights*/}
-          {/*  </Link>*/}
-          {/*  /!* Desktop Track & Trace Button - Now visible from 'lg' breakpoint *!/*/}
-          {/*  <Link href="/track-and-trace">*/}
-          {/*    {" "}*/}
-          {/*    /!* Removed the 'hidden xl:block' class *!/*/}
-          {/*    <button className="bg-[#e6b333] text-[#282828] hover:bg-[#162f65] hover:text-white px-4 sm:px-6 lg:px-8 py-1.5 sm:py-2 text-xs sm:text-sm lg:text-sm rounded-lg font-normal transition-colors">*/}
-          {/*      Track and Trace*/}
-          {/*    </button>*/}
-          {/*  </Link>*/}
-          {/*</nav>*/}
+          <nav
+            ref={navRef}
+            className="hidden lg:flex items-center space-x-6 lg:space-x-8 xl:space-x-12 order-2 text-sm md:text-base xl:text-lg"
+          >
+            {navItems.map((item, idx) => {
+              const isDropdown = item.sub_items && item.sub_items.length > 0;
+              const isLinkActive =
+                pathname === item.nav_item_link ||
+                (isDropdown && pathname.startsWith(item.nav_item_link || ""));
 
-          <nav className="hidden lg:flex items-center space-x-6 lg:space-x-8 xl:space-x-12 order-2 text-sm md:text-base xl:text-lg">
-            <Link
-              href="/whyNexus"
-              className={`${
-                pathname === "/whyNexus"
-                  ? "text-[#162F65]"
-                  : "text-[#282828] hover:text-[#162F65]"
-              } font-semibold`}
-            >
-              Why Nexus
-            </Link>
-            <Link
-              href="/leadership"
-              className={`${
-                pathname === "/leadership"
-                  ? "text-[#162F65]"
-                  : "text-[#282828] hover:text-[#162F65]"
-              } font-semibold`}
-            >
-              Leadership Team
-            </Link>
+              if (isDropdown) {
+                return (
+                  <div key={idx} className="relative flex items-center gap-1">
+                    <Link
+                      href={item.nav_item_link || "#"}
+                      className={`font-semibold ${
+                        isLinkActive
+                          ? "text-[#162F65]"
+                          : "text-[#282828] hover:text-[#162F65]"
+                      }`}
+                    >
+                      {item.nav_item_name}
+                    </Link>
 
-            {/* Services dropdown */}
-            {/* Services dropdown */}
-            <div className="relative flex items-center gap-1" ref={dropdownRef}>
-              {/* "Services" navigates to /services */}
-              <Link
-                href="/services"
-                className={`font-semibold ${
-                  pathname.startsWith("/services")
-                    ? "text-[#162F65]"
-                    : "text-[#282828] hover:text-[#162F65]"
-                }`}
-              >
-                Services
-              </Link>
+                    {/* Arrow toggles dropdown */}
+                    <button
+                      onClick={() =>
+                        setOpenDropdownIndex(openDropdownIndex === idx ? null : idx)
+                      }
+                      className="focus:outline-none"
+                      aria-label={`Toggle ${item.nav_item_name} Dropdown`}
+                    >
+                      <svg
+                        className={`w-4 h-4 transition-transform ${
+                          openDropdownIndex === idx ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
 
-              {/* Arrow toggles dropdown */}
-              <button
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="focus:outline-none"
-                aria-label="Toggle Services Dropdown"
-              >
-                <svg
-                  className={`w-4 h-4 transition-transform ${
-                    isServicesOpen ? "rotate-180" : ""
+                    {/* Dropdown menu */}
+                    {openDropdownIndex === idx && (
+                      <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md z-50 w-64">
+                        <ul className="py-2">
+                          {item.sub_items?.map((subItem, subIdx) => (
+                            <li key={subIdx}>
+                              <Link
+                                href={subItem.link || "#"}
+                                className="block px-4 py-2 text-sm text-[#282828] hover:bg-gray-100 hover:text-[#162F65]"
+                                onClick={() => setOpenDropdownIndex(null)}
+                              >
+                                {subItem.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={idx}
+                  href={item.nav_item_link || "#"}
+                  className={`font-semibold ${
+                    isLinkActive
+                      ? "text-[#162F65]"
+                      : "text-[#282828] hover:text-[#162F65]"
                   }`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  viewBox="0 0 24 24"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-
-              {/* Dropdown menu */}
-              {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md z-50 w-64">
-                  <ul className="py-2">
-                    {services.map((service) => (
-                      <li key={service.href}>
-                        <Link
-                          href={service.href}
-                          className="block px-4 py-2 text-sm text-[#282828] hover:bg-gray-100 hover:text-[#162F65]"
-                        >
-                          {service.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            <Link
-              href="/insights"
-              className={`${
-                pathname === "/insights"
-                  ? "text-[#162F65]"
-                  : "text-[#282828] hover:text-[#162F65]"
-              } font-semibold`}
-            >
-              Insights
-            </Link>
+                  {item.nav_item_name}
+                </Link>
+              );
+            })}
 
             <Link href="/track-and-trace">
               <button className="bg-[#e6b333] text-[#282828] hover:bg-[#162f65] hover:text-white px-6 py-2 rounded-lg text-sm transition-colors">
@@ -619,84 +582,85 @@ const Nav = () => {
           } overflow-hidden transition-all duration-300 ease-in-out`}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
-            <Link
-              href="/whyNexus"
-              className="block px-3 py-2 text-base text-[#282828] hover:text-[#082049] w-full text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Why Nexus
-            </Link>
-            <Link
-              href="/leadership"
-              className="block px-3 py-2 text-base text-[#282828] hover:text-[#082049] w-full text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Leadership Team
-            </Link>
+            {navItems.map((item, idx) => {
+              const isDropdown = item.sub_items && item.sub_items.length > 0;
+              const isLinkActive =
+                pathname === item.nav_item_link ||
+                (isDropdown && pathname.startsWith(item.nav_item_link || ""));
 
-            {/* Services with toggle */}
-            <div className="w-full">
-              <div className="flex justify-center items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-md transition-colors">
-                {/* Services Link */}
+              if (isDropdown) {
+                const isMobileDropdownOpen = openMobileDropdownIndex === idx;
+                return (
+                  <div key={idx} className="w-full">
+                    <div className="flex justify-center items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-md transition-colors">
+                      <Link
+                        href={item.nav_item_link || "#"}
+                        className="text-base text-[#282828] hover:text-[#082049] text-center font-semibold"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.nav_item_name}
+                      </Link>
+
+                      <button
+                        onClick={() =>
+                          setOpenMobileDropdownIndex(isMobileDropdownOpen ? null : idx)
+                        }
+                        className="focus:outline-none"
+                        aria-label={`Toggle ${item.nav_item_name} Dropdown`}
+                      >
+                        <svg
+                          className={`w-4 h-4 transform transition-transform ${
+                            isMobileDropdownOpen ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {isMobileDropdownOpen && (
+                      <div className="pl-6 mt-1 space-y-1 bg-white rounded-md flex flex-col items-center">
+                        {item.sub_items?.map((subItem, subIdx) => (
+                          <Link
+                            key={subIdx}
+                            href={subItem.link || "#"}
+                            className="block px-3 py-1 text-sm text-[#282828] hover:text-[#082049]"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
                 <Link
-                  href="/services"
-                  className="text-base text-[#282828] hover:text-[#082049] text-center"
+                  key={idx}
+                  href={item.nav_item_link || "#"}
+                  className={`block px-3 py-2 text-base w-full text-center font-semibold ${
+                    isLinkActive ? "text-[#162F65]" : "text-[#282828] hover:text-[#082049]"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Services
+                  {item.nav_item_name}
                 </Link>
+              );
+            })}
 
-                {/* Dropdown Toggle Button */}
-                <button
-                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                  className="focus:outline-none"
-                  aria-label="Toggle Services Dropdown"
-                >
-                  <svg
-                    className={`w-4 h-4 transform transition-transform ${
-                      isServicesOpen ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Dropdown */}
-              {isMobileServicesOpen && (
-                <div className="pl-6 mt-1 space-y-1 bg-white rounded-md">
-                  {services.map((service) => (
-                    <Link
-                      key={service.href}
-                      href={service.href}
-                      className="block px-3 py-1 text-sm text-[#282828] hover:text-[#082049]"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {service.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-             <Link
-              href="/insights"
-              className="block px-3 py-2 text-base text-[#282828] hover:text-[#082049] w-full text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Insights
-            </Link>
             <Link href="/contactUs" className="w-full text-center mt-4">
               <button
-                className="bg-[#e6b333] text-[#282828] hover:bg-[#162f65] px-6 py-2 text-sm rounded-lg w-full transition-colors"
+                className="bg-[#e6b333] text-[#282828] hover:bg-[#162f65] px-6 py-2 text-sm rounded-lg w-full transition-colors font-semibold"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact Us

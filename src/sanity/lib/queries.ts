@@ -1,7 +1,22 @@
 // import client from '../../../client';
 
-export const headerQuery = `*[_type == "navbar"]{
-    headerScripts
+// export const headerQuery = `*[_type == "navbar"]{
+//     headerScripts
+// }`;
+
+export const headerQuery = `*[_type == "navbar"][0]{
+  "logoUrl": navbar_logo.asset->url,
+  navbar_logo_alt,
+  navbar_logo_link,
+  nav_items[]{
+    nav_item_name,
+    nav_item_link,
+    sub_items[]{
+      name,
+      link
+    }
+  },
+  headerScripts
 }`;
 
 export const airAndFreightService =
