@@ -341,7 +341,7 @@ const TrackAndTrace = async () => {
                   />{" "}
                   {pageData.middle_text || "for a free demo or to"}{" "}
                   <Link href={pageData.contact_link || "/contactUs"} className="underline cursor-pointer">
-                    {pageData.underline_text_2 || "Reach Us"}
+                    {pageData.underline_text_2 || "Reach Us"}.
                   </Link>
                   .
                   {/* Call{" "}

@@ -1292,6 +1292,8 @@ export const integratedLogistics = `
   
 `
 
+
+
 export const leadership = `
  *[_type == "leadership"]{
   hero_section{
@@ -1328,6 +1330,9 @@ seo {
 }
   
 `
+
+
+
 
 
 export const linkedInSection = `

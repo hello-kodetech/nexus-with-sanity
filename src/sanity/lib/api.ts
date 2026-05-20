@@ -45,7 +45,7 @@ import {
     // PostDetails,
     IntegratedLogisticsData,
     // TeamMemberSanityData,
-    LeadershipPageData,
+    // LeadershipPageData,
     // TeamMember,
     PrivacyPolicyData,
     roadAndRailData,
@@ -346,7 +346,7 @@ export async function getIntergratedLogistics(): Promise<IntegratedLogisticsData
  * Fetches data for the Leadership page.
  * @returns {Promise<LeadershipPageData | null>} The leadership page data or null if an error occurs.
  */
-export async function getLeadershipData(): Promise<LeadershipPageData | null> {
+export async function getLeadershipData() {
     try {
         const data = await sanityClient.fetch(leadership);
         console.log("Fetched leadership data:", data);
