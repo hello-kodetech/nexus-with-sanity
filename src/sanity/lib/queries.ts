@@ -40,6 +40,20 @@ export const airAndFreightService =
             card_3_button_link,
             "card_3_image": card_3_image.asset->url
         },
+        sections[] {
+            title,
+            subtitle1,
+            subtitle2,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            buttonText,
+            buttonLink,
+            useWidget,
+            "imageSrc": image.asset->url,
+            imageAlt,
+            "reverse": reverseOrder
+        },
         bottom_banner {
             banner_title,
             button_text,
@@ -496,6 +510,20 @@ export const customs = `
     card_button_link,
     "card_image": card_image.asset->url
   },
+          sections[] {
+            title,
+            subtitle1,
+            subtitle2,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            buttonText,
+            buttonLink,
+            useWidget,
+            "imageSrc": image.asset->url,
+            imageAlt,
+            "reverse": reverseOrder
+        },
   bottom_banner{
     banner_title,
     banner_title_2,
@@ -797,6 +825,20 @@ export const roadAndRail = `
     card_2_button_link,
     "card_2_image": card_2_image.asset->url
   },
+          sections[] {
+            title,
+            subtitle1,
+            subtitle2,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            buttonText,
+            buttonLink,
+            useWidget,
+            "imageSrc": image.asset->url,
+            imageAlt,
+            "reverse": reverseOrder
+        },
   bottom_banner{
     banner_title,
     banner_title_2,
@@ -1209,6 +1251,20 @@ export const integratedLogistics = `
     card_4_button_link,
     "card_4_image": card_4_image.asset->url
   },
+          sections[] {
+            title,
+            subtitle1,
+            subtitle2,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            buttonText,
+            buttonLink,
+            useWidget,
+            "imageSrc": image.asset->url,
+            imageAlt,
+            "reverse": reverseOrder
+        },
 
   bottom_banner{
     banner_title,
@@ -1242,89 +1298,8 @@ export const leadership = `
     heroTitle,
     "heroImage": heroImage.asset->url,
     },
-  Page_subtitle,
-  terms_member_1{
-    
-    person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_2{
-   person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_3{
-   person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_4{
-    person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_5{
-    person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_6{
-   person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_7{
-    person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_8{
-   person_name,
-    person_designation,
-    "person_photo": person_photo.asset->url,
-    "person_background_image": person_background_image.asset->url,
-    imageAlt,
-    link_text,
-    link,
-    description
-  },
-  terms_member_9{
+  Page_subtitle,  
+  team_members[]{
     person_name,
     person_designation,
     "person_photo": person_photo.asset->url,
