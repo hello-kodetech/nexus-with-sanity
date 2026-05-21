@@ -398,6 +398,9 @@ const Nav = () => {
     ? headerData.nav_items
     : FALLBACK_NAV_ITEMS;
 
+  const trackTraceText = headerData?.track_trace_label;
+  const contactUsText = headerData?.contact_us_label || "Contact Us";
+
   return (
     <header className="relative z-50 poppins">
       <div className="w-full px-4 sm:px-6 lg:px-8 mx-auto max-w-full [@media(min-width:1900px)]:max-w-[1216px] [@media(min-width:1200px)]:max-w-[1200px]">
@@ -465,7 +468,7 @@ const Nav = () => {
           <div className="lg:hidden flex-shrink-0 order-3">
             <Link href="/track-and-trace">
               <button className="bg-[#e6b333] text-[#282828] hover:bg-[#e6b333]/90 px-4 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm rounded-lg font-normal transition-colors">
-                Track & Trace
+                {trackTraceText || "Track & Trace"}
               </button>
             </Link>
           </div>
@@ -559,7 +562,7 @@ const Nav = () => {
 
             <Link href="/track-and-trace">
               <button className="bg-[#e6b333] text-[#282828] hover:bg-[#162f65] hover:text-white px-6 py-2 rounded-lg text-sm transition-colors">
-                Track and Trace
+                {trackTraceText || "Track and Trace"}
               </button>
             </Link>
           </nav>
@@ -568,7 +571,7 @@ const Nav = () => {
           <div className="hidden lg:flex items-center space-x-3 lg:space-x-4 order-3">
             <Link href="/contactUs">
               <button className="bg-[#e6b333] text-[#282828] hover:bg-[#162f65] hover:text-white px-4 sm:px-6 lg:px-8 py-1.5 sm:py-2 text-xs sm:text-sm lg:text-sm rounded-lg font-normal transition-colors">
-                Contact Us
+                {contactUsText}
               </button>
             </Link>
           </div>
@@ -663,7 +666,7 @@ const Nav = () => {
                 className="bg-[#e6b333] text-[#282828] hover:bg-[#162f65] px-6 py-2 text-sm rounded-lg w-full transition-colors font-semibold"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contact Us
+                {contactUsText}
               </button>
             </Link>
           </div>

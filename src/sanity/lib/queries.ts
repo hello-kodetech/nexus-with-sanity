@@ -16,6 +16,8 @@ export const headerQuery = `*[_type == "navbar"][0]{
       link
     }
   },
+  track_trace_label,
+  contact_us_label,
   headerScripts
 }`;
 
@@ -566,17 +568,32 @@ export const customs = `
   
 `
 
+// export const siteSettingsQuery = `
+//  *[_type == "siteData"]{
+//   siteName,
+//   logo{
+//     "url": asset->url,
+//     alt: asset->originalFilename
+//   },
+//   script,
+//   favicon{
+//     "url": asset->url,
+//     alt: asset->originalFilename
+//   }
+// }
+// `;
+
 export const siteSettingsQuery = `
- *[_type == "siteData"]{
+ *[_type == "siteData"][0]{
   siteName,
   logo{
     "url": asset->url,
-    alt: asset->originalFilename
+    "alt": asset->originalFilename
   },
   script,
   favicon{
     "url": asset->url,
-    alt: asset->originalFilename
+    "alt": asset->originalFilename
   }
 }
 `;
@@ -655,7 +672,6 @@ export const freight_quote = `
 }
   
 `
-
 
 
 export const homePage = `
@@ -1308,7 +1324,6 @@ export const integratedLogistics = `
 `
 
 
-
 export const leadership = `
  *[_type == "leadership"]{
   hero_section{
@@ -1345,9 +1360,6 @@ seo {
 }
   
 `
-
-
-
 
 
 export const linkedInSection = `

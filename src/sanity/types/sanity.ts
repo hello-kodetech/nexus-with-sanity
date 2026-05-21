@@ -750,5 +750,7 @@ export interface NavbarData {
     navbar_logo_alt?: string;
     navbar_logo_link?: string;
     nav_items?: NavItemType[];
+    track_trace_label?: string;
+    contact_us_label?: string;
     headerScripts?: string;
 }
