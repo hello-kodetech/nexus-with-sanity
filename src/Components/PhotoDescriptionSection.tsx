@@ -9,12 +9,12 @@ import AnimatedSection from "@/Components/AnimatedSection";
 type Props = {
   title: string;
   paragraph1: string;
-  subtitle1: string;
+  subtitle1?: string;
   subtitle2?: string;
-  paragraph2: string;
-  paragraph3: string;
+  paragraph2?: string;
+  paragraph3?: string;
   buttonText: string;
-  buttonLink: string;
+  buttonLink?: string;
   imageSrc: string;
   imageAlt?: string;
   reverse?: boolean;
@@ -24,12 +24,12 @@ type Props = {
 export default function PhotoDescriptionSection({
   title,
   paragraph1,
-  subtitle1,
-  subtitle2,
-  paragraph2,
-  paragraph3,
+  subtitle1 = "",
+  subtitle2 = "",
+  paragraph2 = "",
+  paragraph3 = "",
   buttonText,
-  buttonLink,
+  buttonLink = "",
   imageSrc,
   imageAlt = "Image",
   reverse = false,

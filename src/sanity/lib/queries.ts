@@ -1,7 +1,24 @@
 // import client from '../../../client';
 
-export const headerQuery = `*[_type == "navbar"]{
-    headerScripts
+// export const headerQuery = `*[_type == "navbar"]{
+//     headerScripts
+// }`;
+
+export const headerQuery = `*[_type == "navbar"][0]{
+  "logoUrl": navbar_logo.asset->url,
+  navbar_logo_alt,
+  navbar_logo_link,
+  nav_items[]{
+    nav_item_name,
+    nav_item_link,
+    sub_items[]{
+      name,
+      link
+    }
+  },
+  track_trace_label,
+  contact_us_label,
+  headerScripts
 }`;
 
 export const airAndFreightService =
@@ -39,6 +56,20 @@ export const airAndFreightService =
             card_3_button_text,
             card_3_button_link,
             "card_3_image": card_3_image.asset->url
+        },
+        sections[] {
+            title,
+            subtitle1,
+            subtitle2,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            buttonText,
+            buttonLink,
+            useWidget,
+            "imageSrc": image.asset->url,
+            imageAlt,
+            "reverse": reverseOrder
         },
         bottom_banner {
             banner_title,
@@ -496,6 +527,20 @@ export const customs = `
     card_button_link,
     "card_image": card_image.asset->url
   },
+          sections[] {
+            title,
+            subtitle1,
+            subtitle2,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            buttonText,
+            buttonLink,
+            useWidget,
+            "imageSrc": image.asset->url,
+            imageAlt,
+            "reverse": reverseOrder
+        },
   bottom_banner{
     banner_title,
     banner_title_2,
@@ -523,17 +568,32 @@ export const customs = `
   
 `
 
+// export const siteSettingsQuery = `
+//  *[_type == "siteData"]{
+//   siteName,
+//   logo{
+//     "url": asset->url,
+//     alt: asset->originalFilename
+//   },
+//   script,
+//   favicon{
+//     "url": asset->url,
+//     alt: asset->originalFilename
+//   }
+// }
+// `;
+
 export const siteSettingsQuery = `
- *[_type == "siteData"]{
+ *[_type == "siteData"][0]{
   siteName,
   logo{
     "url": asset->url,
-    alt: asset->originalFilename
+    "alt": asset->originalFilename
   },
   script,
   favicon{
     "url": asset->url,
-    alt: asset->originalFilename
+    "alt": asset->originalFilename
   }
 }
 `;
@@ -612,7 +672,6 @@ export const freight_quote = `
 }
   
 `
-
 
 
 export const homePage = `
@@ -797,6 +856,20 @@ export const roadAndRail = `
     card_2_button_link,
     "card_2_image": card_2_image.asset->url
   },
+          sections[] {
+            title,
+            subtitle1,
+            subtitle2,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            buttonText,
+            buttonLink,
+            useWidget,
+            "imageSrc": image.asset->url,
+            imageAlt,
+            "reverse": reverseOrder
+        },
   bottom_banner{
     banner_title,
     banner_title_2,
@@ -1209,6 +1282,20 @@ export const integratedLogistics = `
     card_4_button_link,
     "card_4_image": card_4_image.asset->url
   },
+          sections[] {
+            title,
+            subtitle1,
+            subtitle2,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            buttonText,
+            buttonLink,
+            useWidget,
+            "imageSrc": image.asset->url,
+            imageAlt,
+            "reverse": reverseOrder
+        },
 
   bottom_banner{
     banner_title,
@@ -1235,7 +1322,6 @@ export const integratedLogistics = `
 }
   
 `
-
 
 
 export const leadership = `
@@ -1274,9 +1360,6 @@ seo {
 }
   
 `
-
-
-
 
 
 export const linkedInSection = `
