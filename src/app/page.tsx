@@ -4,12 +4,12 @@ import React from "react";
 import Testimonial from "@/Components/Testimonial";
 import LinkedinSection from "@/Components/LinkedinSection";
 import AnimatedSection from "@/Components/AnimatedSection";
-import {getHomePageData} from "@/sanity/lib/api";
+import { getHomePageData } from "@/sanity/lib/api";
 import HomeHeader from "@/Components/HomeHeader";
 import StatBanner from "@/Components/StatBanner";
 import ComprehensiveSolutions from "@/Components/ComprehensiveSolutions";
-import {Metadata} from "next";
-import {urlFor} from "../../client";
+import { Metadata } from "next";
+import { urlFor } from "../../client";
 
 export default async function Home() {
 
@@ -73,7 +73,7 @@ export default async function Home() {
         {
             title: homeData.section_6.title || "",
             description: `${homeData.section_6.paragraph1
-            } \n\n${homeData.section_6.paragraph2}`,
+                } \n\n${homeData.section_6.paragraph2}`,
             imageSrc: homeData.section_6.image || "/CargoWise_neo_logo.svg",
             imageAlt: homeData.section_6.imageAlt || "Cargo Tracking",
             reverse: true,
@@ -117,8 +117,8 @@ export default async function Home() {
     const serviceDescription: string = homeData.section_4_description;
 
     const stats = [
-        {value: homeData.section_3_column_1_count, label: homeData.section_3_column_1_text, suffix: "+"},
-        {value: homeData.section_3_column_2_count, label: homeData.section_3_column_2_text},
+        { value: homeData.section_3_column_1_count, label: homeData.section_3_column_1_text, suffix: "+" },
+        { value: homeData.section_3_column_2_count, label: homeData.section_3_column_2_text },
     ];
 
     const otherStat = {
@@ -284,7 +284,7 @@ export default async function Home() {
                 <div className="max-w-7xl mx-auto px-8 lg:px-12">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
                         <AnimatedSection direction="left" delay={0.2}>
-                            <div className="relative">
+                            <div className="relative mb-3 sm:mb-0">
                                 <div
                                     className="relative w-full h-[200px] sm:h-[250px] lg:h-[500px] rounded-xl overflow-hidden">
                                     <Image
@@ -297,22 +297,22 @@ export default async function Home() {
                                     />
                                 </div>
 
-                                <div
-                                    className="absolute text-center rounded-[10px] -bottom-4 sm:-bottom-5 lg:-bottom-6 left-4 sm:left-5 lg:left-6 bg-[#225395] text-white px-6 sm:px-8 lg:px-10 py-2 sm:py-2.5 lg:py-3 shadow-lg">
+                                <div id="experince-label"
+                                    className="absolute text-center rounded-[10px] -bottom-8 sm:-bottom-5 lg:-bottom-6 left-4 sm:left-5 lg:left-6 bg-[#225395] text-white px-4 sm:px-8 lg:px-10 py-1.5 sm:py-2.5 lg:py-3 shadow-lg">
                                     {/* <AnimatedSection direction="left" delay={0.3}> */}
                                     <div className="text-center">
-                                        <p className="text-sm sm:text-base lg:text-lg font-semibold mb-0.5 sm:mb-1">
+                                        <p className="text-[10px] sm:text-base lg:text-lg font-semibold mb-0.5 sm:mb-1">
                                             {homeData.section_2_badge_text_row_1 || "Team with"}
                                         </p>
-                                        <p className="text-3xl sm:text-5xl lg:text-6xl font-bold">
+                                        <p className="text-2xl sm:text-5xl lg:text-6xl font-bold leading-none my-0.5 sm:my-1">
                                             {homeData.section_2_badge_text_row_2 || "25"}
                                         </p>
-                                        <p className="text-lg sm:text-xl lg:text-3xl font-semibold">
+                                        <p className="text-xs sm:text-xl lg:text-3xl font-semibold">
                                             {homeData.section_2_badge_text_row_3 || "Years"}
                                         </p>
-                                        <p className="text-xs sm:text-sm lg:text-sm mt-0.5 sm:mt-1">
+                                        <p className="text-[9px] sm:text-sm lg:text-sm mt-0.5 sm:mt-1 leading-tight">
                                             {homeData.section_2_badge_text_row_4 || "Industry"}
-                                            <br/>
+                                            <br />
                                             {homeData.section_2_badge_text_row_5 || "Experience"}
                                         </p>
                                     </div>
@@ -375,10 +375,10 @@ export default async function Home() {
             </div>
 
             <StatBanner stats={stats} otherStat={otherStat} statTitleFirstPart={statTitleFirstPart}
-                        statTitleSecondPart={statTitleSecondPart}/>
+                statTitleSecondPart={statTitleSecondPart} />
 
             <ComprehensiveSolutions services={services} serviceTitle={serviceTitle}
-                                    serviceDescription={serviceDescription}/>
+                serviceDescription={serviceDescription} />
 
             <div className="bg-[#F6F6F6] py-6 sm:py-8 poppins">
                 <div className="px-4 sm:px-6 lg:px-8">
@@ -389,31 +389,28 @@ export default async function Home() {
                         >
                             {index === 0 && (
                                 <div
-                                    className="absolute inset-0 bg-[url('/x.png')] bg-no-repeat hidden md:block md:w-[400px] md:h-[600px] bg-contain lg:w-[850px] lg:h-[850px] -top-10 lg:-top-44"/>
+                                    className="absolute inset-0 bg-[url('/x.png')] bg-no-repeat hidden md:block md:w-[400px] md:h-[600px] bg-contain lg:w-[850px] lg:h-[850px] -top-10 lg:-top-44" />
                             )}
 
                             {/* Desktop & Tablet layout (md+) */}
                             <div
-                                className={`max-w-7xl relative mx-auto items-center hidden md:flex ${
-                                    section.reverse ? "flex-row-reverse" : "flex-row"
-                                } container mx-auto lg:px-8 gap-16 p-6`}
+                                className={`max-w-7xl relative mx-auto items-center hidden md:flex ${section.reverse ? "flex-row-reverse" : "flex-row"
+                                    } container mx-auto lg:px-8 gap-16 p-6`}
                             >
                                 <div className="w-3/5 flex flex-col justify-between">
                                     <AnimatedSection direction="left" delay={0.2}>
                                         <h2
-                                            className={`font-semibold ${
-                                                section.reverse
-                                                    ? "lg:text-[41px] lg:leading-[56px]"
-                                                    : "lg:text-[50px] lg:leading-[72px]"
-                                            } text-xl sm:text-2xl text-[#162F65] max-w-3xl text-left`}
+                                            className={`font-semibold ${section.reverse
+                                                ? "lg:text-[41px] lg:leading-[56px]"
+                                                : "lg:text-[50px] lg:leading-[72px]"
+                                                } text-xl sm:text-2xl text-[#162F65] max-w-3xl text-left`}
                                         >
                                             {section.title}
                                         </h2>
                                         <p
-                                            className={`text-sm lg:text-lg font-medium ${
-                                                section.reverse ? "mt-2" : "mt-4"
-                                            } text-[#676767] max-w-2xl leading-[25px] text-left whitespace-pre-line`}
-                                            dangerouslySetInnerHTML={{__html: section.description}}
+                                            className={`text-sm lg:text-lg font-medium ${section.reverse ? "mt-2" : "mt-4"
+                                                } text-[#676767] max-w-2xl leading-[25px] text-left whitespace-pre-line`}
+                                            dangerouslySetInnerHTML={{ __html: section.description }}
                                         />
                                         <div className="mt-8 text-left">
                                             <Link href={section.buttonLink}>
@@ -458,7 +455,7 @@ export default async function Home() {
                                     </div>
                                     <p
                                         className="text-sm font-medium text-[#676767] leading-[25px] whitespace-pre-line text-center"
-                                        dangerouslySetInnerHTML={{__html: section.description}}
+                                        dangerouslySetInnerHTML={{ __html: section.description }}
                                     />
                                     <div className="text-center mt-4">
                                         <Link href={section.buttonLink}>
@@ -473,7 +470,7 @@ export default async function Home() {
                         </div>
                     ))}
 
-                    <hr className="border-[#D9D9D9] container mx-auto border-b-2 max-w-7xl"/>
+                    <hr className="border-[#D9D9D9] container mx-auto border-b-2 max-w-7xl" />
                 </div>
             </div>
 
@@ -489,14 +486,14 @@ export default async function Home() {
                                 {testimonialDesc || "For over 25+ years, we&#39;ve moved cargo (and some mountains) to achieve outstanding successes for our customers."}
                             </p>
                         </div>
-                        <Testimonial testimonials={testimonials}/>
+                        <Testimonial testimonials={testimonials} />
                     </div>
                 </div>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
                 <div className="pb-14">
-                    <LinkedinSection/>
+                    <LinkedinSection />
                 </div>
             </AnimatedSection>
         </div>
